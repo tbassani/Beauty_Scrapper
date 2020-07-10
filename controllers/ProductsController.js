@@ -2,6 +2,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 /* eslint-disable linebreak-style */
+const puppeteer = require('puppeteer');
 
 module.exports = {
   async getProducts(req, res, next) {
