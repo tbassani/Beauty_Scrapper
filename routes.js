@@ -8,7 +8,7 @@ const productsController = require('./controllers/ProductsController');
   .get('/check_token', authController.checkToken);
 // TODOs
 //appRoutes.use(authMiddleware); */
-appRoutes.get('/products/:brand', productsController.getProducts);
+appRoutes.get('/products/:brand/:page', productsController.getProducts);
 // Auth
 
 module.exports = appRoutes;

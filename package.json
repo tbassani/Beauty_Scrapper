@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +17,11 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "puppeteer": "^5.0.0"
+    "puppeteer": "^5.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }
