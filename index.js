@@ -27,6 +27,6 @@ app.use((error, req, res) => {
   res.json({ error: error.message });
 });
 
-app.listen(5000, () => {
+app.listen(6000, () => {
   console.log('Server started on port 5000');
 });
