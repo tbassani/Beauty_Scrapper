@@ -29,28 +29,32 @@ module.exports = {
 
         const result = await page.evaluate(() => {
           const products = [];
-          document.querySelectorAll('.item').forEach((li) => {
-            const id = li.getAttribute('data-productid');
-            const price = li.getAttribute('data-product-final-price');
-            let maker = '';
-            let rating = '';
-            let name = '';
-            let ref = '';
-            let img_src = '';
-            li.querySelectorAll('.product-manufacturer').forEach((div) => {
-              maker = div.textContent;
-            });
-            li.querySelectorAll('.rating').forEach((div) => {
-              rating = div.getAttribute('style');
-            });
+          let maker = '';
+          let rating = '';
+          let name = '';
+          let ref = '';
+          let img_src = '';
+          let id = '';
+          let i = 1;
+          let price = '';
+          let li = document.querySelector(`#add-product-${i}`);
+          while (li) {
+            id = li.getAttribute('data-productid');
+            price = li.getAttribute('data-product-final-price');
+            let div = li.querySelector(
+              '.product-container > .product-infos > .product-manufacturer'
+            );
+            maker = div.textContent;
+            div = li.querySelector('.ratings > .rating-box > .rating');
+            rating = div.getAttribute('style');
 
-            li.querySelectorAll('a').forEach((a) => {
-              name = a.getAttribute('title');
-              ref = a.getAttribute('href');
-              a.querySelectorAll('img').forEach((img) => {
-                img_src = img.getAttribute('src');
-              });
-            });
+            const a = li.querySelector('a');
+            name = a.getAttribute('title');
+            ref = a.getAttribute('href');
+
+            const img = a.querySelector('img');
+            img_src = img.getAttribute('src');
+
             const product = {
               id,
               name,
@@ -60,8 +64,10 @@ module.exports = {
               img_src,
               ref,
             };
+            li = document.querySelector(`#add-product-${i}`);
             products.push(product);
-          });
+            i += 1;
+          }
           return products;
         });
 
@@ -70,7 +76,6 @@ module.exports = {
       };
       scrape(URL).then((value) => {
         console.log(value);
-        console.log(value.length);
         res.status(200).json(value);
       });
     } catch (error) {
