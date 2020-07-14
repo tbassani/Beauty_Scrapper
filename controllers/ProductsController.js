@@ -94,8 +94,7 @@ module.exports = {
       do {
         switch (brand.toString().toUpperCase()) {
           case 'SEPHORA':
-            URL = `https://www.sephora.com.br/maquiagem?p=${pages.length + 68}`;
-            console.log(`${URL}----------------------------------------------------------------`);
+            URL = `https://www.sephora.com.br/maquiagem?p=${pages.length + 1}`;
             break;
 
           default:
@@ -110,7 +109,6 @@ module.exports = {
           ok = false;
         }
         lastPage = value;
-        console.log(lastPage);
       } while (ok);
       res.status(200).json(pages);
     } catch (error) {
