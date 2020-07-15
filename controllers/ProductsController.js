@@ -19,6 +19,7 @@ const scrape = async (url) => {
     let ref = '';
     let img_src = '';
     let id = '';
+    let category = '';
     let i = 1;
     let price = '';
     let li = document.querySelector(`#add-product-${i}`);
@@ -33,6 +34,14 @@ const scrape = async (url) => {
       const a = li.querySelector('a');
       name = a.getAttribute('title');
       ref = a.getAttribute('href');
+      const str = ref.toString().split('/');
+
+      if (str && str.length > 0) {
+        const str2 = str[str.length - 2];
+        category = str2;
+      } else {
+        category = null;
+      }
 
       const img = a.querySelector('img');
       img_src = img.getAttribute('src');
@@ -45,6 +54,7 @@ const scrape = async (url) => {
         rating,
         img_src,
         ref,
+        category,
       };
       li = document.querySelector(`#add-product-${i}`);
       if (products.length <= 0 || products[products.length - 1].id !== product.id) {
@@ -95,6 +105,7 @@ module.exports = {
         switch (brand.toString().toUpperCase()) {
           case 'SEPHORA':
             URL = `https://www.sephora.com.br/maquiagem?p=${pages.length + 1}`;
+            console.log(URL);
             break;
 
           default:
